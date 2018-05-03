@@ -1,0 +1,11 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Îòçûâû", 
+		"../otzyvy-o-magazine.php", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>
