@@ -4,39 +4,36 @@ $APPLICATION->SetPageProperty("keywords_inner", "отзывы,товары, для вас");
 $APPLICATION->SetPageProperty("title", "Отзывы о магазине | Магазин товары для вас");
 $APPLICATION->SetPageProperty("description", "Здесь можно оставить отзыв о нашем магазине");
 $APPLICATION->SetTitle("Отзывы о магазине");
-?>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<!-- Вывод компонента -->
-<?$APPLICATION->IncludeComponent(
+?><script src='https://www.google.com/recaptcha/api.js'></script> <!-- Вывод компонента --> <?$APPLICATION->IncludeComponent(
 	"custom",
 	"",
 	Array(
 		"ADD_ELEMENT_CHAIN" => "N",
-		"ADD_SECTIONS_CHAIN" => "Y",
+		"ADD_SECTIONS_CHAIN" => "N",
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "Y",
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
 		"DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"DETAIL_DISPLAY_TOP_PAGER" => "Y",
-		"DETAIL_FIELD_CODE" => array("", ""),
+		"DETAIL_FIELD_CODE" => array("",""),
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "",
 		"DETAIL_PAGER_TITLE" => "Страница",
-		"DETAIL_PROPERTY_CODE" => array("", ""),
-		"DISPLAY_BOTTOM_PAGER" => "Y",
+		"DETAIL_PROPERTY_CODE" => array("",""),
+		"DISPLAY_BOTTOM_PAGER" => "N",
 		"DISPLAY_DATE" => "Y",
 		"DISPLAY_NAME" => "Y",
-		"DISPLAY_PICTURE" => "N",
-		"DISPLAY_PREVIEW_TEXT" => "N",
+		"DISPLAY_PICTURE" => "Y",
+		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
 		"GROUP_PERMISSIONS" => array(),
 		"IBLOCK_ID" => "4",
 		"IBLOCK_TYPE" => "simple",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
-		"LIST_FIELD_CODE" => array("", ""),
-		"LIST_PROPERTY_CODE" => array("", ""),
+		"LIST_FIELD_CODE" => array("",""),
+		"LIST_PROPERTY_CODE" => array("",""),
 		"MESSAGE_404" => "",
 		"NEWS_COUNT" => "20",
 		"PAGER_BASE_LINK_ENABLE" => "N",
@@ -48,29 +45,29 @@ $APPLICATION->SetTitle("Отзывы о магазине");
 		"PAGER_TITLE" => "Отзывы",
 		"SEF_FOLDER" => "",
 		"SEF_MODE" => "Y",
-		"SEF_URL_TEMPLATES" => Array(
-			"detail" => "#ELEMENT_ID#/",
-			"news" => "",
-			"section" => ""
-		),
+		"SEF_URL_TEMPLATES" => Array("detail"=>"#ELEMENT_ID#/","news"=>"","section"=>""),
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "Y",
+		"SHARE_HANDLERS" => array("lj"),
+		"SHARE_HIDE" => "N",
+		"SHARE_SHORTEN_URL_KEY" => "",
+		"SHARE_SHORTEN_URL_LOGIN" => "",
+		"SHARE_TEMPLATE" => "",
 		"SHOW_404" => "N",
 		"STRICT_SECTION_CHECK" => "N",
 		"USE_PERMISSIONS" => "N",
 		"USE_SHARE" => "N"
 	)
-);?>
-<!-- Форма для ввода отзывов -->
+);?> <!-- Форма для ввода отзывов -->
 <form action="" method="post" enctype="multipart/form-data" class="form-rew">
-	<input type="text" placeholder="Введите ваше имя" name="NAME" class="text">
-	<input type="text" placeholder="Введите ваш электронный адрес" name="EMAIL" class="text"><br><br>
-	<input type="text" placeholder="Введите ваш телефон" name="PHONE" class="text">
-	<textarea placeholder="Введите ваш отзыв" name="REVIEWS" class="text-mess"></textarea><br>
-	<input type="submit" class="submit" value="Отправить" name="OK">
-	<div class="g-recaptcha" data-sitekey="6LcELlYUAAAAABk-UEapk1w8cwg4NU-mcyvEpdgM"></div>
+ <input type="text" placeholder="Введите ваше имя" name="NAME" class="text"> <input type="text" placeholder="Введите ваш электронный адрес" name="EMAIL" class="text"><br>
+ <br>
+ <input type="text" placeholder="Введите ваш телефон" name="PHONE" class="text"> <textarea placeholder="Введите ваш отзыв" name="REVIEWS" class="text-mess"></textarea><br>
+ <input type="submit" class="submit" value="Отправить" name="OK">
+	<div class="g-recaptcha" data-sitekey="6LcELlYUAAAAABk-UEapk1w8cwg4NU-mcyvEpdgM">
+	</div>
 </form>
-<?php
+ <?php
 if (isset($_POST['submit'])) {
 	$secret = '6LcELlYUAAAAAAdcKrHIcihM9YFWRG1sIUYWe5fN';
 	$response = $_POST['g-recaptcha-response'];
@@ -85,8 +82,7 @@ if (isset($_POST['submit'])) {
 		echo $_POST['NAME'];
 	}
 }
-?>
-<?
+?> <?
 if($_POST["OK"]){
 	if(CModule::IncludeModule("iblock")){	
 		if($_POST["NAME"]!="" && $_POST["EMAIL"]!="" && $_POST["REVIEWS"]!="" && $_POST["PHONE"]!=""){
@@ -111,5 +107,4 @@ if($_POST["OK"]){
 		}
 	}
 }
-?>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
